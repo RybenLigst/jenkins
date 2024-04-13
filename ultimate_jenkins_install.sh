@@ -47,7 +47,6 @@ if [[ "$add_to_docker" =~ ^[Yy]$ ]]; then
   read -p "Enter username: " username
   sudo usermod -aG docker "$username"
   sudo service docker restart
-  sudo reboot
 fi
 
 # Generate SSH key (if script #4 is desired)
@@ -97,3 +96,11 @@ cat /root/.ssh/$keyname.pub
 
 echo "Your private key (**WARNING: Do not share this**):"
 cat /root/.ssh/$keyname
+
+
+# Rebooting the system
+read -p "Do you want to reboot the system? (y/n):" reboot_system
+
+if [[ "$reboot_system" =~ ^[Yy]$ ]]; then
+  sudo reboot
+fi
