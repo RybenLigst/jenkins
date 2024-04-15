@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build and Push Docker Image') {
+            docker build . -t grafana
+            docker push grafana
+        }
+        }
+        stage('Deploy Grafana') {
+            docker run -d -p 3000:3000 grafana
+        }
+        
+    }
